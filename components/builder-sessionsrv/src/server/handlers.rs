@@ -124,8 +124,9 @@ pub fn session_create(
     let mut msg = req.parse::<proto::SessionCreate>()?;
     debug!("session-create, {:?}", msg);
     let mut flags = FeatureFlags::default();
+
     if env::var_os("HAB_FUNC_TEST").is_some() {
-        flags = FeatureFlags::all();
+        flags = FeatureFlags::empty();
     } else {
         assign_permissions(msg.get_name(), &mut flags, state)
     }

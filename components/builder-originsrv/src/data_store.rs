@@ -319,7 +319,7 @@ impl DataStore {
     ) -> SrvResult<()> {
         let conn = self.pool.get(opid)?;
 
-        let rows = conn.query(
+        conn.execute(
             "SELECT * FROM delete_origin_project_integration_v1($1, $2, $3)",
             &[
                 &opid.get_origin(),
@@ -1002,6 +1002,8 @@ impl DataStore {
         &self,
         ocpg: &originsrv::OriginChannelPackageLatestGet,
     ) -> SrvResult<Option<originsrv::OriginPackageIdent>> {
+        debug!("********** HAHA ocpg = {:?}", &ocpg);
+
         let conn = self.pool.get(ocpg)?;
         let rows = conn.query(
             "SELECT * FROM get_origin_channel_package_latest_v5($1, $2, $3, $4, $5)",
