@@ -78,7 +78,7 @@ impl error::Error for Error {
 impl From<bincode::internal::ErrorKind> for Error {
     fn from(err: bincode::internal::ErrorKind) -> Error {
         match err {
-            bincode::internal::ErrorKind::IoError(io) => Error::IPCIO(io.kind()),
+            bincode::internal::ErrorKind::Io(io) => Error::IPCIO(io.kind()),
             _ => Error::IPCBincode(err.to_string()),
         }
     }

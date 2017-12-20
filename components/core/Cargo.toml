@@ -48,7 +48,7 @@ widestring = "*"
 winapi = "*"
 
 [dev-dependencies]
-hyper = "*"
+hyper = "0.10"
 tempdir = "*"
 
 [features]

@@ -189,10 +189,10 @@ impl JobLog {
         let mut stripped = RepeatedField::new();
         for line in self.get_content() {
             let after = RE.replace_all(line, "");
-            stripped.push(after);
+            stripped.push(after.into_owned());
         }
 
-        self.set_content(stripped);
+        self.set_content(stripped)
     }
 }
 
